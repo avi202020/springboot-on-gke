@@ -1,0 +1,33 @@
+apiVersion: networking.istio.io/v1alpha3  
+kind: Gateway  
+metadata:  
+  name: card-gateway  
+spec:  
+  selector:  
+    istio: ingressgateway # use Istio default gateway implementation  
+  servers:  
+  - port:  
+      name: http  
+      number: 80  
+      protocol: HTTP  
+    hosts:  
+    - '*'  
+---  
+apiVersion: networking.istio.io/v1alpha3  
+kind: VirtualService  
+metadata:  
+  name: card-service  
+spec:  
+  hosts:  
+  - "*"  
+  gateways:  
+  - card-gateway  
+  http:  
+  - match:  
+    - uri:  
+        prefix: /  
+    route:  
+    - destination:  
+        port:  
+          number: 8000  
+        host: card-service
