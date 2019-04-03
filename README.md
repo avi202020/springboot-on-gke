@@ -1,4 +1,4 @@
-Create a GCP Free Tire account.
+Create a GCP Free tier account.
 
 Create a new GCP project called springboot-on-gke.
 
